@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 
 public final class UserApiExtension implements BeforeEachCallback, AfterEachCallback {
 
-    private final Application application /*= new UserApi(7000)*/;
+    private final Application application;
 
     public UserApiExtension(final int port) {
         application = new UserApi(port);

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.guddy.test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.dizitart', name: 'nitrite', version: '3.1.0'
+    compile group: 'io.javalin', name: 'javalin', version: '2.6.0'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.1.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.1.0')
+}
+
+test {
+    useJUnitPlatform()
+}

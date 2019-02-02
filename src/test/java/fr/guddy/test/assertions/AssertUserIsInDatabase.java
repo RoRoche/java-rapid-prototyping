@@ -5,8 +5,6 @@ import fr.guddy.test.User;
 import org.assertj.core.api.Assertions;
 import org.dizitart.no2.objects.ObjectRepository;
 
-import java.util.stream.StreamSupport;
-
 public final class AssertUserIsInDatabase implements Assertion {
     private final ObjectRepository<User> repository;
     private final User user;
@@ -19,7 +17,9 @@ public final class AssertUserIsInDatabase implements Assertion {
     @Override
     public void check() throws Exception {
         Assertions.assertThat(
-                StreamSupport.stream(repository.find().spliterator(), false)
+                repository.find()
+                        .toList()
+                        .stream()
                         .anyMatch(user::equals)
         ).isTrue();
     }

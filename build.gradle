@@ -15,9 +15,11 @@ dependencies {
     compile group: 'org.dizitart', name: 'nitrite', version: '3.1.0'
     compile group: 'io.javalin', name: 'javalin', version: '2.6.0'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    compile group: 'org.pojomatic', name: 'pojomatic', version: '2.2.1'
 
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
     testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
+    testCompile group: 'com.pragmaticobjects.oo.tests', name: 'tests-junit5', version: '0.0.0'
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.1.0')
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.1.0')
 }

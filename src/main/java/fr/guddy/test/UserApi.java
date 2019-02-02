@@ -2,6 +2,8 @@ package fr.guddy.test;
 
 import io.javalin.Javalin;
 
+import static io.javalin.apibuilder.ApiBuilder.crud;
+
 public final class UserApi implements Application {
 
     private final Javalin javalin;
@@ -15,7 +17,13 @@ public final class UserApi implements Application {
     public UserApi(final int port) {
         this(
                 Javalin.create()
-                        .get("/", ctx -> ctx.result("Hello World")),
+                        .get("/", ctx -> ctx.result("Hello World"))
+                        .routes(() ->
+                                crud(
+                                        "users/:user-id",
+                                        new Users()
+                                )
+                        ),
                 port
         );
     }

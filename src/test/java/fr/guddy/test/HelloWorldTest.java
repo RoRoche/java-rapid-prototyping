@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-final class FirstRestAssured {
+final class HelloWorldTest {
 
     @RegisterExtension
     final UserApiExtension userApiExtension = new UserApiExtension(7000);

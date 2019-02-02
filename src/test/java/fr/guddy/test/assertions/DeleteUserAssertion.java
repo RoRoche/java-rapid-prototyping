@@ -2,7 +2,6 @@ package fr.guddy.test.assertions;
 
 import com.pragmaticobjects.oo.tests.Assertion;
 import fr.guddy.test.User;
-import org.assertj.core.util.Lists;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 
@@ -17,17 +16,15 @@ public final class DeleteUserAssertion implements Assertion {
     public DeleteUserAssertion(final ObjectRepository<User> repository, final User user) {
         this(
                 new FixturedAssertion(
-                        Lists.newArrayList(
-                                new InsertUserFixture(
-                                        repository,
-                                        user
-                                ),
-                                new DeleteUserFixture(
-                                        repository,
-                                        user
-                                )
-                        ),
                         new AssertUserIsNotInDatabase(
+                                repository,
+                                user
+                        ),
+                        new DeleteUserFixture(
+                                repository,
+                                user
+                        ),
+                        new InsertUserFixture(
                                 repository,
                                 user
                         )

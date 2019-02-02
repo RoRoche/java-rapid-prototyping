@@ -1,8 +1,8 @@
 package fr.guddy.test.assertions;
 
 import com.pragmaticobjects.oo.tests.Assertion;
-import org.assertj.core.util.Lists;
 
+import java.util.Arrays;
 import java.util.List;
 
 public final class FixturedAssertion implements Assertion {
@@ -10,16 +10,9 @@ public final class FixturedAssertion implements Assertion {
     private final List<Fixture> fixture;
     private final Assertion assertion;
 
-    public FixturedAssertion(final List<Fixture> fixture, final Assertion assertion) {
-        this.fixture = fixture;
+    public FixturedAssertion(final Assertion assertion, final Fixture... fixtures) {
+        this.fixture = Arrays.asList(fixtures);
         this.assertion = assertion;
-    }
-
-    public FixturedAssertion(final Fixture fixture, final Assertion assertion) {
-        this(
-                Lists.newArrayList(fixture),
-                assertion
-        );
     }
 
     @Override

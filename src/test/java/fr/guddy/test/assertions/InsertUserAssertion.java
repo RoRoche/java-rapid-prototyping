@@ -16,11 +16,11 @@ public final class InsertUserAssertion implements Assertion {
     public InsertUserAssertion(final ObjectRepository<User> repository, final User user) {
         this(
                 new FixturedAssertion(
-                        new InsertUserFixture(
+                        new AssertUserIsInDatabase(
                                 repository,
                                 user
                         ),
-                        new AssertUserIsInDatabase(
+                        new InsertUserFixture(
                                 repository,
                                 user
                         )

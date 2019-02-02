@@ -12,10 +12,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 final class HelloWorldTest {
 
     @RegisterExtension
-    final UserApiExtension userApiExtension = new UserApiExtension(
-            7000,
-            null
-    );
+    final UserApiExtension userApiExtension = new UserApiExtension(7000);
 
     @BeforeAll
     static void beforeAll() {

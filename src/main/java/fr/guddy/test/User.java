@@ -1,7 +1,6 @@
 package fr.guddy.test;
 
 import org.dizitart.no2.IndexType;
-import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.Index;
 import org.dizitart.no2.objects.Indices;
 import org.pojomatic.Pojomatic;
@@ -13,7 +12,6 @@ import java.io.Serializable;
         @Index(value = "userId", type = IndexType.Unique)
 })
 public final class User implements Serializable {
-    @Id
     @Property
     private String userId;
     @Property

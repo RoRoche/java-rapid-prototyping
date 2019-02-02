@@ -1,6 +1,5 @@
 package fr.guddy.test;
 
-import org.dizitart.no2.objects.ObjectRepository;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -9,8 +8,8 @@ public final class UserApiExtension implements BeforeEachCallback, AfterEachCall
 
     private final Application application;
 
-    public UserApiExtension(final int port, final ObjectRepository<User> userRepository) {
-        this.application = new UserApi(port, userRepository);
+    public UserApiExtension(final int port) {
+        application = new UserApi(port);
     }
 
     @Override

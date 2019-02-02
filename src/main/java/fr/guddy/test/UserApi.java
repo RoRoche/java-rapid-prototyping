@@ -1,8 +1,6 @@
 package fr.guddy.test;
 
 import io.javalin.Javalin;
-import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.objects.ObjectRepository;
 
 import static io.javalin.apibuilder.ApiBuilder.crud;
 
@@ -16,18 +14,14 @@ public final class UserApi implements Application {
         this.port = port;
     }
 
-    public UserApi(final int port, final Nitrite db) {
-        this(port, db.getRepository(User.class));
-    }
-
-    public UserApi(final int port, final ObjectRepository<User> userRepository) {
+    public UserApi(final int port) {
         this(
                 Javalin.create()
                         .get("/", ctx -> ctx.result("Hello World"))
                         .routes(() ->
                                 crud(
                                         "users/:user-id",
-                                        new Users(userRepository)
+                                        new Users()
                                 )
                         ),
                 port

@@ -19,9 +19,7 @@ public final class AssertUserIsNotInDatabase implements Assertion {
     @Override
     public void check() throws Exception {
         Assertions.assertThat(
-                repository.find()
-                        .toList()
-                        .stream()
+                StreamSupport.stream(repository.find().spliterator(), false)
                         .anyMatch(user::equals)
         ).isFalse();
     }

@@ -8,9 +8,7 @@ import org.dizitart.no2.objects.Indices;
 import org.pojomatic.Pojomatic;
 import org.pojomatic.annotations.Property;
 
-@Indices({
-    @Index(value = "userId", type = IndexType.Unique)
-})
+@Indices({@Index(value = "userId", type = IndexType.Unique)})
 public final class User implements Serializable {
 
   private static final long serialVersionUID = 1L;

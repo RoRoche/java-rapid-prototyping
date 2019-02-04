@@ -13,6 +13,9 @@ import guru.nidi.codeassert.findbugs.BugCollector;
 import guru.nidi.codeassert.findbugs.FindBugsAnalyzer;
 import guru.nidi.codeassert.findbugs.FindBugsResult;
 import guru.nidi.codeassert.junit.CodeAssertJunit5Test;
+import guru.nidi.codeassert.pmd.CpdAnalyzer;
+import guru.nidi.codeassert.pmd.CpdMatchCollector;
+import guru.nidi.codeassert.pmd.CpdResult;
 import guru.nidi.codeassert.pmd.PmdAnalyzer;
 import guru.nidi.codeassert.pmd.PmdResult;
 import guru.nidi.codeassert.pmd.PmdViolationCollector;
@@ -23,26 +26,38 @@ public final class CodeTest extends CodeAssertJunit5Test {
 
   @Override
   protected FindBugsResult analyzeFindBugs() {
-    final BugCollector bugCollector = new BugCollector().just(
-        In.classes("*Exception").ignore("SE_BAD_FIELD"));
+    final BugCollector bugCollector = new BugCollector();
     return new FindBugsAnalyzer(CONFIG, bugCollector).analyze();
   }
 
   @Override
   protected CheckstyleResult analyzeCheckstyle() {
     final StyleEventCollector bugCollector = new StyleEventCollector().just(
-        In.everywhere().ignore("javadoc.missing", "hidden.field", "hide.utility.class", "javadoc.packageInfo"));
+        In.everywhere().ignore(
+            "javadoc.missing",
+            "hidden.field",
+            "hide.utility.class",
+            "javadoc.packageInfo",
+            "custom.import.order.nonGroup.expected"
+        )
+    );
     return new CheckstyleAnalyzer(
         CONFIG,
-        StyleChecks.sun(),
+        StyleChecks.google(),
         bugCollector
     ).analyze();
   }
 
   @Override
   protected PmdResult analyzePmd() {
-    final PmdViolationCollector collector = new PmdViolationCollector().just(
-        In.everywhere().ignore("MethodArgumentCouldBeFinal"));
+    final PmdViolationCollector collector = new PmdViolationCollector();
     return new PmdAnalyzer(CONFIG, collector).withRulesets(basic(), braces()).analyze();
+  }
+
+  @Override
+  protected CpdResult analyzeCpd() {
+    final CpdMatchCollector collector = new CpdMatchCollector();
+    final CpdAnalyzer analyzer = new CpdAnalyzer(CONFIG, 20, collector);
+    return analyzer.analyze();
   }
 }

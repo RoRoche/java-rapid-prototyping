@@ -32,7 +32,10 @@ public final class Users implements CrudHandler {
     }
 
     @Override
-    public void getOne(@NotNull final Context context, @NotNull final String userId) {
+    public void getOne(
+        @NotNull final Context context,
+        @NotNull final String userId
+    ) {
         final List<User> users = repository.find(eq("userId", userId)).toList();
         if (users.isEmpty()) {
             throw new NotFoundResponse(
@@ -45,21 +48,33 @@ public final class Users implements CrudHandler {
     @Override
     public void create(@NotNull final Context context) {
         final User user = context.bodyAsClass(User.class);
-        if (!repository.find(eq("userId", user.getUserId())).toList().isEmpty()) {
+        if (!repository.find(eq("userId", user.getUserId()))
+            .toList()
+            .isEmpty()
+        ) {
             throw new ConflictResponse(
-                    String.format("User with id \"%s\" already exists", user.getUserId())
+                    String.format(
+                        "User with id \"%s\" already exists",
+                        user.getUserId()
+                    )
             );
         }
         context.status(HttpStatus.CREATED_201).json(user);
     }
 
     @Override
-    public void update(@NotNull final Context context, @NotNull final String userId) {
+    public void update(
+        @NotNull final Context context,
+        @NotNull final String userId
+    ) {
         throw new ForbiddenResponse("not implemented");
     }
 
     @Override
-    public void delete(@NotNull final Context context, @NotNull final String userId) {
+    public void delete(
+        @NotNull final Context context,
+        @NotNull final String userId
+    ) {
         final List<User> users = repository.find(eq("userId", userId)).toList();
         if (users.isEmpty()) {
             throw new NotFoundResponse(

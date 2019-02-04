@@ -1,5 +1,6 @@
 package fr.guddy.test;
 
+import java.io.Serializable;
 import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Id;
 import org.dizitart.no2.objects.Index;
@@ -7,60 +8,65 @@ import org.dizitart.no2.objects.Indices;
 import org.pojomatic.Pojomatic;
 import org.pojomatic.annotations.Property;
 
-import java.io.Serializable;
-
 @Indices({
-        @Index(value = "userId", type = IndexType.Unique)
+    @Index(value = "userId", type = IndexType.Unique)
 })
 public final class User implements Serializable {
-    @Id
-    @Property
-    private String userId;
-    @Property
-    private String firstName;
-    @Property
-    private String lastName;
 
-    public User() {
-    }
+  private static final long serialVersionUID = 1L;
 
-    public User(final String userId, final String firstName, final String lastName) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  @Id
+  @Property
+  private String userId;
+  @Property
+  private String firstName;
+  @Property
+  private String lastName;
 
-    public String getUserId() {
-        return userId;
-    }
+  public User() {
+  }
 
-    public void setUserId(final String userId) {
-        this.userId = userId;
-    }
+  public User(
+      final String userId,
+      final String firstName,
+      final String lastName
+  ) {
+    this.userId = userId;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getUserId() {
+    return userId;
+  }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
+  public void setUserId(final String userId) {
+    this.userId = userId;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
+  public void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
 
-    @Override
-    public boolean equals(final Object obj) {
-        return Pojomatic.equals(this, obj);
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    @Override
-    public int hashCode() {
-        return Pojomatic.hashCode(this);
-    }
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    return Pojomatic.equals(this, obj);
+  }
+
+  @Override
+  public int hashCode() {
+    return Pojomatic.hashCode(this);
+  }
 }

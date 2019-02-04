@@ -7,37 +7,37 @@ import org.dizitart.no2.objects.ObjectRepository;
 
 public final class DeleteUserAssertion implements Assertion {
 
-    private final Assertion delegate;
+  private final Assertion delegate;
 
-    public DeleteUserAssertion(final Assertion delegate) {
-        this.delegate = delegate;
-    }
+  public DeleteUserAssertion(final Assertion delegate) {
+    this.delegate = delegate;
+  }
 
-    public DeleteUserAssertion(final ObjectRepository<User> repository, final User user) {
-        this(
-                new FixturedAssertion(
-                        new AssertUserIsNotInDatabase(
-                                repository,
-                                user
-                        ),
-                        new DeleteUserFixture(
-                                repository,
-                                user
-                        ),
-                        new InsertUserFixture(
-                                repository,
-                                user
-                        )
-                )
-        );
-    }
+  public DeleteUserAssertion(final ObjectRepository<User> repository, final User user) {
+    this(
+        new FixturedAssertion(
+            new AssertUserIsNotInDatabase(
+                repository,
+                user
+            ),
+            new DeleteUserFixture(
+                repository,
+                user
+            ),
+            new InsertUserFixture(
+                repository,
+                user
+            )
+        )
+    );
+  }
 
-    public DeleteUserAssertion(final Nitrite db, final User user) {
-        this(db.getRepository(User.class), user);
-    }
+  public DeleteUserAssertion(final Nitrite db, final User user) {
+    this(db.getRepository(User.class), user);
+  }
 
-    @Override
-    public void check() throws Exception {
+  @Override
+  public void check() throws Exception {
 
-    }
+  }
 }

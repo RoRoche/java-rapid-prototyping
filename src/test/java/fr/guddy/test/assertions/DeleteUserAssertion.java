@@ -38,6 +38,6 @@ public final class DeleteUserAssertion implements Assertion {
 
     @Override
     public void check() throws Exception {
-
+      delegate.check();
     }
 }

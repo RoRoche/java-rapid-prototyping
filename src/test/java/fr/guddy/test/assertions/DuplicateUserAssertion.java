@@ -5,22 +5,22 @@ import fr.guddy.test.User;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 
-public final class InsertUserAssertion implements Assertion {
+public final class DuplicateUserAssertion implements Assertion {
 
     private final Assertion delegate;
 
-    public InsertUserAssertion(final Assertion delegate) {
+    public DuplicateUserAssertion(final Assertion delegate) {
         this.delegate = delegate;
     }
 
-    public InsertUserAssertion(final ObjectRepository<User> repository, final User user) {
+    public DuplicateUserAssertion(final ObjectRepository<User> repository, final User user) {
         this(
                 new FixturedAssertion(
-                        new AssertUserIsInDatabase(
+                        new InsertUserFixture(
                                 repository,
                                 user
                         ),
-                        new InsertUserFixture(
+                        new AssertDuplicateUserFails(
                                 repository,
                                 user
                         )
@@ -28,7 +28,7 @@ public final class InsertUserAssertion implements Assertion {
         );
     }
 
-    public InsertUserAssertion(final Nitrite db, final User user) {
+    public DuplicateUserAssertion(final Nitrite db, final User user) {
         this(db.getRepository(User.class), user);
     }
 

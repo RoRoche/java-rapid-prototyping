@@ -1,14 +1,10 @@
 package fr.guddy.test;
 
 import java.io.Serializable;
-import org.dizitart.no2.IndexType;
 import org.dizitart.no2.objects.Id;
-import org.dizitart.no2.objects.Index;
-import org.dizitart.no2.objects.Indices;
 import org.pojomatic.Pojomatic;
 import org.pojomatic.annotations.Property;
 
-@Indices({@Index(value = "userId", type = IndexType.Unique)})
 public final class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -24,11 +20,7 @@ public final class User implements Serializable {
   public User() {
   }
 
-  public User(
-      final String userId,
-      final String firstName,
-      final String lastName
-  ) {
+  public User(final String userId, final String firstName, final String lastName) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;

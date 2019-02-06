@@ -34,6 +34,6 @@ public final class InsertUserAssertion implements Assertion {
 
   @Override
   public void check() throws Exception {
-
+    delegate.check();
   }
 }

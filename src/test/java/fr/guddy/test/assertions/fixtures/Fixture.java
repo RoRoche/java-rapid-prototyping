@@ -1,4 +1,4 @@
-package fr.guddy.test.assertions;
+package fr.guddy.test.assertions.fixtures;
 
 public interface Fixture {
 

@@ -2,6 +2,8 @@ package fr.guddy.test.assertions;
 
 import com.pragmaticobjects.oo.tests.Assertion;
 import fr.guddy.test.User;
+import fr.guddy.test.assertions.fixtures.FixturedAssertion;
+import fr.guddy.test.assertions.fixtures.InsertUserFixture;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
 
@@ -16,11 +18,11 @@ public final class DuplicateUserAssertion implements Assertion {
   public DuplicateUserAssertion(final ObjectRepository<User> repository, final User user) {
     this(
         new FixturedAssertion(
-            new AssertDuplicateUserFails(
+            new InsertUserFixture(
                 repository,
                 user
             ),
-            new InsertUserFixture(
+            new AssertDuplicateUserFails(
                 repository,
                 user
             )

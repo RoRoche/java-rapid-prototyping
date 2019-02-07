@@ -1,4 +1,4 @@
-package fr.guddy.test.assertions;
+package fr.guddy.test.assertions.fixtures;
 
 import fr.guddy.test.User;
 import org.dizitart.no2.objects.ObjectRepository;
